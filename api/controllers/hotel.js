@@ -1,5 +1,4 @@
 import Hotel from "../models/Hotel.js"
-import { createError } from "../utils/error.js";
 
 export const createHotel = async (req, res, next) => {
     const newHotel = new Hotel(req.body)
@@ -27,8 +26,8 @@ export const updateHotel = async (req, res, next) => {
 
 export const deleteHotel = async (req, res, next) => {
     try {
-        const hotel = await Hotel.findById(req.params.id)
-        res.status(200).json(hotel)
+        const hotel = await Hotel.findByIdAndDelete(req.params.id)
+        res.status(200).json("Hotel has been deleted")
     } catch (error) {
        next(error)
     }
